@@ -2,14 +2,11 @@
     위장
     url: https://programmers.co.kr/learn/courses/30/lessons/42578
 
-    정확성: 28.6
-    합계: 28.6 / 100.0
-
-    문제점 - 옷의 type이 많아질 때, type에 하나의 값만 들어온다면 그 옷과 다른 type의 옷의 경우의 수를 커버하지 못하고 있음
+    point : 스파이가 몇 가지 type의 옷을 입었는지를 생각하지 말자. 3가지 type의 옷의 값 중에서 '경우의 수'는 결국 A x B x C이다. 생각을 연역적으로 해라. 
 */
 
 function solution(clothes) {
-  let answer = 0;
+  let answer = 1;
 
   function makeHashTable(clothes) {
     let clothesObj = {};
@@ -22,76 +19,21 @@ function solution(clothes) {
       }
     });
 
-    console.log("hash table is : ", clothesObj);
     return clothesObj;
   }
 
   function countNumOfCases(clothes) {
     let table = makeHashTable(clothes);
     const types = Object.keys(table);
-    let whenOne = 0;
-    let whenCom = 1;
 
     for (let i = 0; i < types.length; i++) {
-      if (types.length === 1) {
-        whenOne = whenOne + table[types[i]].length;
-        return whenOne;
-      } else {
-        console.log(table[types[i]].length);
-        whenOne = whenOne + table[types[i]].length;
-        whenCom = whenCom * table[types[i]].length;
-      }
+      answer = answer * (table[types[i]].length + 1);
     }
 
-    return whenOne + whenCom;
+    return answer;
   }
 
   answer = countNumOfCases(clothes);
 
-  return answer;
+  return answer - 1;
 }
-
-/*
-참고 코드
-function solution(clothes) {
-  let answer = 0;
-  let types = [];
-  let typeInd;
-
-  clothes.forEach(cloth => {
-    typeInd = typeIndexOf(types, cloth[1]); // -1 -> 0
-
-    if (typeInd === -1) {
-      types.push([cloth[1], 1]); // 옷종류에 1을 붙여서 배열에 삽입
-    } else {
-      types[typeInd][1]++; // 옷 종류 뒤에 숫자가 1씩 증가
-      // [ [ 'headgear', 2 ] ]
-    }
-
-    if (types.length > 0) {
-      answer = 1;
-      types.forEach(type => {
-        answer = answer * (type[1] + 1);    // 어떻게 이런 생각을 하지?
-      });
-      answer = answer - 1;
-    }
-  });
-
-  return answer;
-}
-
-function typeIndexOf(types, type) {
-  // types는 처음엔 빈배열이라서 return -1
-  let answer = -1;
-
-  for (let i = 0; i < types.length; i++) {
-    if (types[i][0] === type) {
-      // 두번째부터 옷의 종류가 같다면,
-      answer = i; // i는 일단 0
-      break;
-    }
-  }
-
-  return answer;
-}
-*/
