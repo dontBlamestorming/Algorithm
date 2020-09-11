@@ -38,3 +38,22 @@ function solution(n) {
   const primeNumber = numbers.filter(number => number !== 0);
   return primeNumber.length;
 }
+
+/*
+다른 코드
+function numberOfPrime(n) {
+    var result = 0;
+  var dcount = 0;
+  for(var i = 2; i<=n; i++){
+    for(var j = 2; j<=i; j++){
+      if(i%j == 0)
+        dcount++;
+    }
+    if(dcount == 1){
+      result++;
+    }
+    dcount = 0;
+  }
+    return result;
+}
+*/
