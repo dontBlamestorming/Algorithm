@@ -37,7 +37,7 @@ def solution():
     str_upper = str.upper()  # 대소문자 상관없음
     cnt_dict = count_each_char(str_upper)
 
-    # sort - value를 기준으로 내림차순 정렬
+    # sort - value를 기준으로 내림차순 정렬.
     cnt_sorted = sorted(
         cnt_dict.items(), key=lambda item: item[1], reverse=True)
 
