@@ -1,7 +1,10 @@
-'''
-    정수 삼각형
-    url: https://programmers.co.kr/learn/courses/30/lessons/43105
-'''
+"""
+    BOJ 1932 정수 삼각형
+    url : https://www.acmicpc.net/problem/1932
+"""
+
+n = int(input())
+triangle = [list(map(int, input().split())) for _ in range(n)]
 
 
 def solution(triangle):
@@ -31,4 +34,7 @@ def solution(triangle):
 
                 board[i][j] = max(left, right)
 
-    return max(max(board))
+    print(max(max(board)))
+
+
+solution(triangle)
